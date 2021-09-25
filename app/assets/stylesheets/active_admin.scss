@@ -15,9 +15,14 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
-.status_tag {
+//.status_tag {
 
-  &.ok, &.published, &.complete, &.completed, &.green { background: #8daa92; }
-  &.warn, &.warning, &.orange { background: #e29b20; }
-  &.error, &.errored, &.red { background: #d45f53; }
+  //&.ok, &.published, &.complete, &.completed, &.green { //background: #8daa92; }
+  //&.warn, &.warning, &.orange { background: #e29b20; }
+  //&.error, &.errored, &.red { background: #d45f53; }
+  //&.yes{ background: #00FF00;}
+//}
+.status_tag {
+  &.active {background: green}
+  &.inactive {background: red}
 }

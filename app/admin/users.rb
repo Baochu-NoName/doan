@@ -1,5 +1,19 @@
 ActiveAdmin.register User do
 
+
+#hiển thị thông tin user(chế độ xem)
+  show do
+    panel "User Details" do
+      attributes_table_for user do
+        row :name
+        row :created_at
+        row :updated_at
+        row :email
+        row :is_active
+        row :phone 
+      end    
+    end
+  end
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -32,24 +46,25 @@ ActiveAdmin.register User do
   column :password
   #Them vao status_tag cho column is_active
   column :is_active do |s|
-   s.active_for_authentication? ? status_tag(I18n.t("yes"), class:"account_active",background:'#d45f53') : status_tag(I18n.t("no"), class:"account_inactive")
+   s.active_for_authentication? ? status_tag(I18n.t("yes"), class:"account_active") : status_tag(I18n.t("no"), class:"account_inactive")
   end
   actions 
   end
+
+
   #tao 1 form moi ten User Details
   form do |f|
-      f.inputs "User Details" do
-      if f.input :is_active
-      f.inputs :name
-      f.inputs :phone
-      f.inputs :password
+      f.inputs "Edit User" do
+      f.input :name
+      f.input :phone
+      f.input :password
+      f.input :is_active
       dropdown_menu "Address" do
         item "Tinh"
         item "Huyen"
       end
       f.actions
-      end 
-    end
+      end
   end
 
   #Tro lai trang /admin/users
@@ -59,8 +74,18 @@ ActiveAdmin.register User do
      member_action :name, method: :get do
      redirect_to admin_user_path
      end 
-
-
+    #Thay doi nut update trong edit user 
+    #Thay doi cac field khac ma ko thay doi 
+    #password user da tao(neu field password is blank) 
+    controller do
+    def update
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      params[:user].delete("password")
+      params[:user].delete("password_confirmation")
+    end
+    super
+  end
+end
     #
     # or
     #
