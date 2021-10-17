@@ -1,6 +1,5 @@
 ActiveAdmin.register User do
 
-
 #hiển thị thông tin user(chế độ xem)
   show do
     panel "User Details" do

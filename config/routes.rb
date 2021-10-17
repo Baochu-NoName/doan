@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users 
- #
-  root 'product#index'
- #get 'homepage/index'
+  get 'product', to:'product#index'
+  root 'homepage#index'
+  #get 'homepage/index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # root 'homepage#index'

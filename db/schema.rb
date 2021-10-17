@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_22_142826) do
+ActiveRecord::Schema.define(version: 2021_09_22_065015) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -40,16 +40,21 @@ ActiveRecord::Schema.define(version: 2021_09_22_142826) do
 
   create_table "products", force: :cascade do |t|
     t.string "image"
-    t.string "name"
-    t.text "description"
-    t.integer "price"
+    t.string "name", default: ""
+    t.text "description", default: ""
+    t.decimal "price", precision: 6, scale: 2, default: "0.0"
     t.integer "year"
+    t.boolean "available", default: true
+    t.boolean "featured", default: false
+    t.decimal "new_price", precision: 6, scale: 2, default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "name", default: ""
+    t.string "phone", default: ""
+    t.boolean "is_active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
@@ -57,9 +62,6 @@ ActiveRecord::Schema.define(version: 2021_09_22_142826) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "blocked_at"
-    t.boolean "is_active"
-    t.integer "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

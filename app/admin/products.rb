@@ -4,7 +4,7 @@ ActiveAdmin.register Product do
   # cho phép Rails controllers nhận giá trị truyền từ views
   # Cho các thuộc tính được khai báo dưới đây
 
-  permit_params :image, :name, :description, :price, :year
+  permit_params :image, :name, :description, :price, :year, :new_price, :available,:per_page
   
   index do
   selectable_column
@@ -14,7 +14,8 @@ ActiveAdmin.register Product do
 end
   column :image 
   column :description
-  column :price
+  column "Old Price", :price
+  column "New Price", :new_price
   column :year
   actions
   end 
@@ -28,6 +29,7 @@ end
     f.input :image
     f.input :description
     f.input :price
+    f.input :new_price
     f.input :year
   end
   f.actions

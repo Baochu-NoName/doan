@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   #Hien thi thong tin tai khoan hoat dong hay khong hoat dong
-  scope :active, ->{where.not(is_active:nil)}
-  scope :inactive, ->{where(is_active:nil)}
+  scope :active, ->{where.not(is_active:false)}
+  scope :inactive, ->{where(is_active:false)}
 
   #Override phuong thuc active_for_authentication? xac nhan user da dang nhap hay chua
   def active_for_authentication?
