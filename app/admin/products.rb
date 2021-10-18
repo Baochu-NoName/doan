@@ -4,36 +4,47 @@ ActiveAdmin.register Product do
   # cho phép Rails controllers nhận giá trị truyền từ views
   # Cho các thuộc tính được khai báo dưới đây
 
-  permit_params :image, :name, :description, :price, :year, :new_price, :available,:per_page
+  permit_params :image, :name, :description, :price, :sold_quantity, :new_price, :available,:per_page, :released_at, :rating
   
   index do
   selectable_column
   id_column
   column :name do |product|
   link_to "#{product.name}", admin_product_path(product)
-end
-  column :image 
+  end
+  column :image do |product|
+    image_tag product.image, size:'50x50'
+  end
+ 
   column :description
-  column "Old Price", :price
-  column "New Price", :new_price
+  column "Old Price", :price do |product|
+    number_to_currency product.price
+  end
+  column "New Price", :new_price do |product|
+    number_to_currency product.new_price
+  end
   column :year
+  column :released_at
   actions
   end 
   # Cho phép admin search theo các thuộc tính này tại trang index
   filter :name
-  filter :price
+  filter :new_price
+  filter :released_at
+  filter :sold_quantity
+  filter :rating
   # Các thuộc tính sẽ được hiển thị để Admin nhập giá trị
-  form do |f|
+  form do |f|   
     f.inputs "Products Details" do
     f.input :name
-    f.input :image
-    f.input :description
+    f.input :image, as: :file
+    f.input :description 
     f.input :price
     f.input :new_price
-    f.input :year
+    f.input :released_at
+    f.input :sold_quantity 
   end
   f.actions
-  #
   # or
   #
   # permit_params do
@@ -41,6 +52,5 @@ end
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-end
-  
+  end
 end
