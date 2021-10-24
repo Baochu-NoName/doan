@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users 
-  get 'product', to:'product#index'
+  resources :products do
+  get 'products/:id', to:'product#show'
+end
+  get 'carts', to:'carts#show'
+#get 'carts', to:'carts#show'
+  resources :orders
+  resources :order_items
+  resources :carts
+   # post 'products/order_items/:id',to:'products#order_items', as:'order_items' 
+  #post 'products/add_to_cart/:id', to:'products#add_to_cart', as: 'add_to_cart'
+  #delete 'products/remove_from_cart/:id', to:'products#remove_from_cart', as: 'remove_from_cart'
+
   root 'homepage#index'
   get 'errors/not_found'
   get 'errors/internal_server_error'

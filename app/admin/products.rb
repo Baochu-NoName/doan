@@ -23,8 +23,13 @@ ActiveAdmin.register Product do
   column "New Price", :new_price do |product|
     number_to_currency product.new_price
   end
-  column :year
-  column :released_at
+  column :released_at 
+  column "Rating", :rating do |product|
+  if product.rating.blank?
+  else       
+    render_stars(product.rating)
+  end
+  end
   actions
   end 
   # Cho phép admin search theo các thuộc tính này tại trang index
@@ -43,6 +48,7 @@ ActiveAdmin.register Product do
     f.input :new_price
     f.input :released_at
     f.input :sold_quantity 
+    f.input :rating,as: :select,collection: decimal_selection_array(1,5),selected: f.product.rating || 'Default'
   end
   f.actions
   # or

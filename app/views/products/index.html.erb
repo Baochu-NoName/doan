@@ -34,7 +34,7 @@
 
   <section id="advertisement">
     <div class="container">
-      <img src="images/shop/advertisement.jpg" alt="" />
+      <%= image_tag('shop/advertisement.jpg',alt:"Shop Advertisement") %>
     </div>
   </section>
   
@@ -175,7 +175,7 @@
             </div><!--/price-range-->
             
             <div class="shipping text-center"><!--shipping-->
-              <img src="images/home/shipping.jpg" alt="" />
+              <%= image_tag('home/shipping.jpg', alt: "Shipping") %>
             </div><!--/shipping-->
             
           </div>
@@ -189,20 +189,25 @@
               <div class="product-image-wrapper">               
                 <div class="single-products">
                   <div class="productinfo text-center">
-                    <img src="" alt="" />
-                      <%= image_tag product.image, size: '180x180'%>
-                    <h2 class="old-price">$<%= product.price %></h2> 
+                      <%= image_tag product.image, size: '200x230', alt:"Product Image"%>
+                     <br><br/>
+                     <span><%= product.name %></span>
+                    <h4 class="old-price">$<%= product.price %></h4> 
                     <h2>$<%= product.new_price %> </h2>
-                    <p><%= product.name %></p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    <a href="" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a> 
+                   
                   </div>
                   <div class="product-overlay">
-                    <div class="overlay-content">
+                    <div class="overlay-content">  
+                      <span><%= product.name %></span> 
+                      <h2>$<%= product.new_price %></h2>
                       
-                      <h2>$<%= product.new_price %> </h2>
-                      <p><%= product.name %></p>                      
+                      <%= link_to ("<i class='fa fa-shopping-cart'></i>Add to cart").html_safe, product, class:"btn btn-default add-to-cart"%> 
+                      <% if product.rating.blank? %>
+                      <% else %>
+                       <p><%= product.rating%><%= render_stars(product.rating)%></p>
+                      <% end %>   
                      
-                      <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                     </div>
                   </div>
                 </div>

@@ -42,4 +42,22 @@ end
 def decimal_selection_array(start,limit,step_size=0.5)
     decimal_array = (start..limit).step(step_size).map(&:to_s).to_a
   end
+
+   def current_order
+        #Use find by id to avoid potential errors
+        if Order.find_by_id(session[:order_id]).nil?
+            Order.new
+        else
+            Order.find_by_id(session[:order_id])
+        end
+    end
+
+    def cart_count_over_one
+        return total_cart_items if total_cart_items > 0
+    end
+    
+    def total_cart_items
+    total = @cart.line_items.map(&:quantity).sum
+    return total if total > 0
+  end
 end
