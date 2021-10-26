@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :invoices
   devise_for :users 
   resources :products do
   get 'products/:id', to:'product#show'

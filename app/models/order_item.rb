@@ -1,6 +1,9 @@
 class OrderItem < ApplicationRecord
   belongs_to :product
   belongs_to :order
+  
+  has_many :invoice_items
+  has_many :invoices, through: :invoice_items
   before_save :set_unit_price
   before_save :set_total
 

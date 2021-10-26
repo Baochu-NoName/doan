@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_060821) do
+ActiveRecord::Schema.define(version: 2021_10_25_051209) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -66,6 +66,21 @@ ActiveRecord::Schema.define(version: 2021_10_22_060821) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "invoice_items", force: :cascade do |t|
+    t.integer "invoice_id", null: false
+    t.integer "order_item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id"
+    t.index ["order_item_id"], name: "index_invoice_items_on_order_item_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.string "invoice_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer "quantity"
     t.integer "product_id", null: false
@@ -118,6 +133,8 @@ ActiveRecord::Schema.define(version: 2021_10_22_060821) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "invoice_items", "invoices"
+  add_foreign_key "invoice_items", "order_items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
 end

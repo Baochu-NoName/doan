@@ -23,6 +23,8 @@
   //&.yes{ background: #00FF00;}
 //}
 .status_tag {
-  &.active {background: green}
-  &.inactive {background: red}
+  &.active &.completed &.shipped {background: green}
+  &.pending {backround: yellow}
+  &.shipping {background: orange}
+  &.inactive &.canceled {background: red}
 }

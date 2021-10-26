@@ -55,9 +55,10 @@ def decimal_selection_array(start,limit,step_size=0.5)
     def cart_count_over_one
         return total_cart_items if total_cart_items > 0
     end
-    
+    #Item.group(:category).sum(:quantity)
     def total_cart_items
-    total = @cart.line_items.map(&:quantity).sum
+   # @order_items = current_order.order_items
+    total = OrderItem.sum(:quantity)
     return total if total > 0
   end
 end
