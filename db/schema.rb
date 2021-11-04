@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_25_051209) do
+ActiveRecord::Schema.define(version: 2021_11_02_140027) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -67,28 +67,36 @@ ActiveRecord::Schema.define(version: 2021_10_25_051209) do
   end
 
   create_table "invoice_items", force: :cascade do |t|
-    t.integer "invoice_id", null: false
-    t.integer "order_item_id", null: false
+    t.string "product_image"
+    t.string "product_name"
+    t.decimal "product_unit_price", precision: 6, scale: 2
+    t.integer "product_quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id"
-    t.index ["order_item_id"], name: "index_invoice_items_on_order_item_id"
+    t.integer "invoice_id"
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.string "invoice_status"
+    t.string "status"
+    t.decimal "total", precision: 6, scale: 2
+    t.string "username"
+    t.string "phone_number"
+    t.integer "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["order_id"], name: "index_invoices_on_order_id"
   end
 
   create_table "order_items", force: :cascade do |t|
     t.integer "quantity"
     t.integer "product_id", null: false
-    t.integer "order_id", null: false
-    t.decimal "total"
-    t.decimal "unit_price"
+    t.integer "order_id"
+    t.decimal "total", precision: 6, scale: 2
+    t.decimal "unit_price", precision: 6, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "invoice_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
@@ -99,6 +107,8 @@ ActiveRecord::Schema.define(version: 2021_10_25_051209) do
     t.decimal "tax"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "invoice_id"
+    t.integer "product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -133,8 +143,7 @@ ActiveRecord::Schema.define(version: 2021_10_25_051209) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "invoice_items", "invoices"
-  add_foreign_key "invoice_items", "order_items"
+  add_foreign_key "invoices", "orders"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
 end

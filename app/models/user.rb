@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many :orders, dependent: :destroy
+  has_many :invoices, dependent: :destroy
   #Hien thi thong tin tai khoan hoat dong hay khong hoat dong
   scope :active, ->{where.not(is_active:false)}
   scope :inactive, ->{where(is_active:false)}

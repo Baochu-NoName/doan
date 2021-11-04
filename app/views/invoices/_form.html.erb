@@ -1,10 +1,10 @@
-<%= form_with(model: invoice) do |form| %>
-  <% if invoice.errors.any? %>
+<%= form_for @invoice do |form| %>
+  <% if @invoice.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
 
       <ul>
-        <% invoice.errors.each do |error| %>
+        <% @invoice.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -12,11 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :invoice_status %>
-    <%= form.text_field :invoice_status %>
+ <!--  <#%= form.fields_for :orders do |order| %> -->
+  <% if user_signed_in? %>
+  <% if current_user %>
+  <%= form.text_field :username, value: current_user.name %>
+  <%= form.text_field :phone_number, value: current_user.phone %>
+  <% @order_items.each do |item| %>
+  <%= form.fields_for :invoice_items, @invoice.invoice_items.build do |invoice_item|%>
+   <%= render 'items', f: invoice_item, fo: item %>
+   <% end %>
+    <% end %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+<% end %>
+<% end %>
+
+<%= debug(@invoice.errors.inspect) %>

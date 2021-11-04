@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get 'products/:id', to:'product#show'
 end
   get 'carts', to:'carts#show'
-#get 'carts', to:'carts#show'
+  get 'invoices/new', to:'invoices#new'
+  get 'invoices', to: 'invoices#index'
+  resources :invoices  
   resources :orders
   resources :order_items
   resources :carts

@@ -17,6 +17,7 @@ ActiveAdmin.register_page "Dashboard" do
               link_to product.name, [:admin, product]
             end
             column :created_at
+            column :released_at
           end
           strong (link_to "Show All Products" , :products )
         end

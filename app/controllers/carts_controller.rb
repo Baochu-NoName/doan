@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
-
   # GET /carts/1 or /carts/1.json
   def show
     @order_items = current_order.order_items

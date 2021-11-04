@@ -5,39 +5,73 @@ ActiveAdmin.register Invoice do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :invoice_status
-  index do
+  permit_params :status, :total, :username, :phone_number, 
+  :order_id, :user_id,
+  invoice_items_attributes: [:id, :product_name, :product_unit_price, :product_quantity]
+   index do
     selectable_column
     id_column
-    column :invoice_status
-    actions 
+    column :username
+    column :phone_number
+    column :status
+    column "Total", :total do |invoice|
+      number_to_currency invoice.total
+    end
+    actions
   end
 
+   # hiển thị thông tin invoices(chế độ xem)
+  show do
+    panel "Invoice Info" do
+      attributes_table_for invoice do
+        row :id
+        row :username
+        row :phone_number
+        row :created_at
+        row :updated_at
+        row :status
+        row "Total", :total do |invoice|
+          number_to_currency invoice.total
+        end
+      end    
+    end
+    panel "Product Details" do
+      table_for invoice.invoice_items do
+        column :product_name
+        column :product_quantity 
+        column "Unit Price", :product_unit_price do |unit|
+          number_to_currency unit.product_unit_price 
+        end
+        column :created_at   
+      end    
+    end
+  end
+
+  # show do
+  #   panel "Product Details" do
+  #     attributes_table_for invoice.invoice_items do
+  #       row :product_name
+  #       row :product_quantity 
+  #       row "Unit Price", :product_unit_price do |unit|
+  #         number_to_currency unit.product_unit_price 
+  #       end
+  #       row :created_at
+  #       row :updated_at    
+  #     end    
+  #   end
+  # end
+
   form do |f|
-    f.inputs "Invoices Details" do
-      f.input :invoice_status,as: :select,collection: Invoice::STATUS_OPTIONS    
+    f.inputs "Invoice Details" do
+      f.input :status, as: :select, collection: Invoice::STATUS_OPTIONS
     end
     f.actions
   end
-
-  controller do
-  def create
-     create! { |success, failure|
-     success.html do
-       redirect_to admin_invoices_path, :notice => "Resource created successfully."
-     end
-     failure.html do
-       flash[:error] = "Error(s) : #{resource.errors.full_messages.join(',')}"
-       redirect_to :back 
-     end
-   }
- end
-end
   #
   # or
   #
   # permit_params do
-  #   permitted = [:invoice_status]
+  #   permitted = [:status, :total, :username, :phone_number, :order_id, :user_id]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end

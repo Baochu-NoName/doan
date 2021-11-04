@@ -1,13 +1,48 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Invoice status:</strong>
-  <%= @invoice.invoice_status %>
+  <strong>Status:</strong>
+  <%= @invoice.status %>
+</p>
+<p>
+  <strong>Username:</strong>
+  <%= @invoice.username %>
+</p>
+<p>
+  <strong>Phone Number:</strong>
+  <%= @invoice.phone_number %>
+</p>
+<!-- <p> <strong>Order Items: <#%= @invoice.orders.count %></strong></p> -->
+<p> 
+ <!--  <#% @invoice.orders.each do |order| %> -->
+    <%= @invoice.total.to_s.to_d %>
 </p>
 
-<% @invoice.invoice_items.each do || %>
-<%= item.quantity %>
+<h1>Order Items</h1>
 
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Product name</th>
+      <th>Unit Price</th>
+      <th>Quantity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @invoice.invoice_items.any? %>
+      <% @invoice.invoice_items.each do |invoice_item| %>
+      <tr>
+        <td><%= invoice_item.product_name %></td>
+        <td><%= invoice_item.product_unit_price.to_s.to_d %></td>
+        <td><%= invoice_item.product_quantity.to_i %></td> 
+        <% end %>
+        <% else %>
+        <p>No items</p>
+      <% end %>
+      </tr>
+  </tbody>
+       
+</table>
+<!-- <#% end %> -->
 
 <%= link_to 'Edit', edit_invoice_path(@invoice) %> |
 <%= link_to 'Back', invoices_path %>

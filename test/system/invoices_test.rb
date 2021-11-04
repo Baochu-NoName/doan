@@ -14,7 +14,7 @@ class InvoicesTest < ApplicationSystemTestCase
     visit invoices_url
     click_on "New Invoice"
 
-    fill_in "Invoice status", with: @invoice.invoice_status
+    fill_in "Status", with: @invoice.status
     click_on "Create Invoice"
 
     assert_text "Invoice was successfully created"
@@ -25,7 +25,7 @@ class InvoicesTest < ApplicationSystemTestCase
     visit invoices_url
     click_on "Edit", match: :first
 
-    fill_in "Invoice status", with: @invoice.invoice_status
+    fill_in "Status", with: @invoice.status
     click_on "Update Invoice"
 
     assert_text "Invoice was successfully updated"

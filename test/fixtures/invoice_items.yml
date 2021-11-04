@@ -1,9 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  invoice: one
-  order_item: one
+  product_image: MyString
+  product_name: MyString
+  product_unit_price: 9.99
+  product_quantity: 1
 
 two:
-  invoice: two
-  order_item: two
+  product_image: MyString
+  product_name: MyString
+  product_unit_price: 9.99
+  product_quantity: 1

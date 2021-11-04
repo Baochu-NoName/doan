@@ -1,12 +1,10 @@
 class OrderItem < ApplicationRecord
-  belongs_to :product
-  belongs_to :order
-  
-  has_many :invoice_items
-  has_many :invoices, through: :invoice_items
+  belongs_to :order, optional: true
+  belongs_to :product, optional: true
+  belongs_to :invoice, optional: true
   before_save :set_unit_price
   before_save :set_total
-
+  delegate  :name,:new_price, to: :product
   def unit_price
     if persisted?
       self[:unit_price]
@@ -25,6 +23,6 @@ class OrderItem < ApplicationRecord
   end
 
   def set_total
-    self[:total] = total * quantity
+    self[:total] = total.to_s.to_d * quantity.to_s.to_d
   end
 end

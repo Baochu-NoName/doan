@@ -4,7 +4,6 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.decimal :subtotal
       t.decimal :total
       t.decimal :tax
-
       t.timestamps
     end
   end

@@ -4,7 +4,7 @@
 
 <%= form_with model: item do |f| %>
   <%= f.hidden_field :product_id, value: item.product.id %>
-  <%= f.number_field :quantity, value: item.quantity.to_i, min:1 %>
+  <%= f.number_field :quantity,value: item.quantity.to_i,  min:1 %>
   <%= f.submit "Update Cart" %>
   <%= link_to "Remove Items", item, method: :delete, data: {confirm: 'Are you sure?'}, remote: true%>
 
@@ -13,3 +13,5 @@
   
 <%end%>
 <h3>Your current order has a total of: <%= current_order.subtotal %> </h3>
+
+<%= link_to "Keep shopping", products_path %>

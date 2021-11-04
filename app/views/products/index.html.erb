@@ -194,7 +194,7 @@
                      <span><%= product.name %></span>
                     <h4 class="old-price">$<%= product.price %></h4> 
                     <h2>$<%= product.new_price %> </h2>
-                    <a href="" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a> 
+                    <!-- <a href="" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>  -->
                    
                   </div>
                   <div class="product-overlay">
@@ -202,7 +202,7 @@
                       <span><%= product.name %></span> 
                       <h2>$<%= product.new_price %></h2>
                       
-                      <%= link_to ("<i class='fa fa-shopping-cart'></i>Add to cart").html_safe, product, class:"btn btn-default add-to-cart"%> 
+                      <%= link_to ("<i class='fa fa-shopping-cart'></i>View product").html_safe, product, class:"btn btn-default add-to-cart"%> 
                       <% if product.rating.blank? %>
                       <% else %>
                        <p><%= product.rating%><%= render_stars(product.rating)%></p>
