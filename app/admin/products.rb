@@ -16,7 +16,9 @@ ActiveAdmin.register Product do
     image_tag product.image, size:'50x50'
   end
  
-  column :description
+  column :description do |product|
+    truncate(product.description, length:100)
+  end
   column "Old Price", :price do |product|
     number_to_currency product.price
   end

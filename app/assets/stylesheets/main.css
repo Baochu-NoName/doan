@@ -20,11 +20,6 @@ a:hover {
     text-decoration: none;
 }
 
-.old-price{
-    text-decoration: line-through;
-}
-
-
 a:focus {
     outline: none;
     outline-offset: 0;
@@ -858,6 +853,15 @@ h2.title {
     font-weight: 700;
 }
 
+.productinfo h4 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    text-decoration: line-through;
+    text-decoration-color: brown;
+   
+}
+
 .product-overlay h2 {
     color: #fff;
     font-family: 'Roboto', sans-serif;
@@ -1130,54 +1134,6 @@ h2.title {
 .pagination li a:hover {
     background: #FE980F;
     color: #fff;
-}
-
-.digg_pagination {
-  background: white;
-  cursor: default;
-  /* self-clearing method: */ }
-  .digg_pagination a, .digg_pagination span, .digg_pagination em {
-    padding: 0.2em 0.5em;
-    display: block;
-    float: left;
-    margin-right: 1px; }
-  .digg_pagination .disabled {
-    color: #999999;
-    border: 1px solid #dddddd; }
-  .digg_pagination .current {
-    font-style: normal;
-    font-weight: bold;
-    background: #2e6ab1;
-    color: white;
-    border: 1px solid #2e6ab1; }
-  .digg_pagination a {
-    text-decoration: none;
-    color: #105cb6;
-    border: 1px solid #9aafe5; }
-    .digg_pagination a:hover, .digg_pagination a:focus {
-      color: #000033;
-      border-color: #000033; }
-  .digg_pagination .page_info {
-    background: #2e6ab1;
-    color: white;
-    padding: 0.4em 0.6em;
-    width: 22em;
-    margin-bottom: 0.3em;
-    text-align: center; }
-    .digg_pagination .page_info b {
-      color: #000033;
-      background: #6aa6ed;
-      padding: 0.1em 0.25em; }
-  .digg_pagination:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html .digg_pagination {
-    height: 1%; }
-  *:first-child + html .digg_pagination {
-    overflow: hidden; 
 }
 
 
@@ -1558,6 +1514,12 @@ h2.title {
 *******Cart CSS******
 **************************/
 
+.shopping-cart{
+    border: 1px solid #d8be9d;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 #do_action {
     margin-bottom: 50px;
 }
@@ -1568,7 +1530,7 @@ h2.title {
 
 .breadcrumbs .breadcrumb {
     background: transparent;
-    margin-bottom: 75px;
+    margin-bottom: 50px;
     padding-left: 0;
 }
 
@@ -1597,6 +1559,21 @@ h2.title {
 #cart_items .cart_info {
     border: 1px solid #E6E4DF;
     margin-bottom: 50px
+}
+
+.shop{
+    height: 5rem;
+    padding-top: 1rem;
+    padding-left: 3rem;
+    
+    border: 1px solid #FE980F;
+
+    text-transform: uppercase;   
+    font-size: 20px !important;
+}
+
+.shop a .fa{
+    margin-left: 85%;
 }
 
 #cart_items .cart_info .cart_menu {
@@ -1644,10 +1621,17 @@ h2.title {
     color: #696763
 }
 
-#cart_items .cart_info .cart_price p {
-    color: #696763;
-    font-size: 18px
+#cart_items .cart_info .new_price {
+    color: #000;
+    font-size: 23px;
 }
+
+#cart_items .cart_info .old_price {
+    color: #696763;
+    font-size: 20px;
+    text-decoration: line-through;
+}
+
 
 #cart_items .cart_info .cart_total_price {
     color: #FE980F;
@@ -1713,6 +1697,15 @@ h2.title {
     color: #434343;
     font-size: 16px;
     font-weight: 300;
+}
+
+.total_one_shop{
+    text-align: right;
+
+    padding-right: 50px;
+    padding-bottom: 20px;
+    
+
 }
 
 #do_action .total_area {
@@ -2494,5 +2487,13 @@ textarea {
 }
 
 .cart-fixed {
-    margin-top: 0.56em;
+    margin-top: 9.4px;
+}
+.cart_update table tr td{
+    display: block;
+    vertical-align: inherit;
+    padding: 5px 7px;
+}
+.old-price {
+    text-decoration: line-through;
 }

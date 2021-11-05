@@ -1,17 +1,108 @@
-<% @order_items.each do |item| %>
-<h3><%= item.product.name%></h3>
-<h3><%=item.product.new_price%> </h3>
+<section id="cart_items">
+    <div class="container">
+      <div class="breadcrumbs">
+        <ol class="breadcrumb">
+          <li><a href="index.html">Home</a></li>
+          <li class="active">Shopping Cart</li>
+        </ol>
+      </div>
+    </div>
 
-<%= form_with model: item do |f| %>
-  <%= f.hidden_field :product_id, value: item.product.id %>
-  <%= f.number_field :quantity,value: item.quantity.to_i,  min:1 %>
-  <%= f.submit "Update Cart" %>
-  <%= link_to "Remove Items", item, method: :delete, data: {confirm: 'Are you sure?'}, remote: true%>
+    <section id="cart_items">
 
-<%end%>
-<h2> Subtotal: <%= item.total %> </h2>
+    <div class="container shopping-cart">
+      <div class="shop"> 
+        <a href="product-details.html">Shop name 1</a> 
+        <a href=""><i class="fa fa-check-circle" aria-hidden="true"></i></a>
+        
+      </div>
+      <div class="table-responsive cart_info">
+        <table class="table table-condensed">
+          <thead>
+            <tr class="cart_menu">
+              <td class="image">Item</td>
+              <td class="description"></td>
+              <td class="price">Price</td>
+              <td class="quantity">Quantity</td>
+              <td class="total">Total</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </thead>
+           
+          <tbody>
+            <tr>
+              <% @order_items.each do |item| %>
+              <td class="cart_product">
+                <a href=""><%= image_tag item.product.image, size:"136x123", alt: "product image"%></a>
+              </td>
+              <td class="cart_description">
+                <h4><a href=""><%= item.product.name%></a></h4>
+                <p>This is Product description</p>
+              </td>
+              <td class="cart_price">
+                <span class="new_price"><%=number_to_currency item.product.new_price, class:"new_price"%></span>
+                <span class="old_price"><%=number_to_currency item.product.price, class:"old_price"%></span>
+              </td>
+              <%= form_with model: item do |f| %>
+               <%= f.hidden_field :product_id, value: item.product.id %>
+              <td class="cart_quantity">
+                <div class="cart_quantity_button">
+                 
+                   <%= f.number_field :quantity,value: item.quantity.to_i,  min:1, class:"cart_quantity_input", max: 50 %>
+                </div>
+              </td>
+              <td class="cart_total">
+                <p class="cart_total_price"><%= item.total %></p>
+              </td> 
+              <td class="cart_update">
+              <%= f.submit "Update Cart", class:"btn btn-default update", role:"button" %></td>
+              <td class="cart_delete">
+               <%= link_to ("<i class='fa fa-times'></i>").html_safe, item, method: :delete, data: {confirm: 'Are you sure?'},class:"cart_quantity_delete", remote: true%>
+              </td>
+            </tr>
+          </tbody>
+          <%end%>
+          <%end%>
+        </table>
+      </div>
+
+      <div class="container total_one_shop">
+        <ul>
+          <li>Eco Tax <span>$0</span></li>
+          <li>Shipping Cost <span> Free</span></li>
+          <li>Total <span><%= current_order.subtotal %></span></li>
+        </ul>
+   
+         <!--  <a class="btn btn-default check_out" href="">Delete cart</a> -->
+         <a href=""><%= link_to "Keep shopping", products_path,class:"btn btn-default check_out" %></a>
+          
+      </div> <!-- Tính tổng đơn của 1 shop -->
+      
+
+      
+    </div> <!--/#cart_items .shopping cart-->
   
-<%end%>
-<h3>Your current order has a total of: <%= current_order.subtotal %> </h3>
+  </section> <!--/#cart_items-->
 
-<%= link_to "Keep shopping", products_path %>
+   <section id="do_action">
+    <div class="container">
+      <div class="heading">
+        <h3>Time to check out</h3>
+        <p>Coupon function will coming soon</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="total_area">
+            <ul>
+              <li>Eco Tax <span>$0</span></li>
+              <li>Shipping Cost <span>Free</span></li>
+              <li>Total <span><%= current_order.subtotal %></span></li>
+            </ul>
+              <a class="btn btn-default update" href="">Update</a>
+              <a href=""><%=link_to "Check Out", invoices_path, class:"btn btn-default check_out", role:"button"  %></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!--/#do_action -->

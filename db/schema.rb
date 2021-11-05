@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_140027) do
     t.decimal "tax"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.integer "invoice_id"
     t.integer "product_id"
   end
