@@ -45,7 +45,7 @@
                 <span class="old_price"><%=number_to_currency item.product.price, class:"old_price"%></span>
               </td>
               <%= form_with model: item do |f| %>
-               <%= f.hidden_field :product_id, value: item.product.id %>
+               <%= f.hidden_field :product_id, value: item.product.id, readonly: true %>
               <td class="cart_quantity">
                 <div class="cart_quantity_button">
                  

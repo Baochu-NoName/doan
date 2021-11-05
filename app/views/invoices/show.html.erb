@@ -10,9 +10,7 @@
   <strong>Phone Number:</strong>
   <%= @invoice.phone_number %>
 </p>
-<!-- <p> <strong>Order Items: <#%= @invoice.orders.count %></strong></p> -->
 <p> 
- <!--  <#% @invoice.orders.each do |order| %> -->
     <%= @invoice.total.to_s.to_d %>
 </p>
 
@@ -44,5 +42,4 @@
 </table>
 <!-- <#% end %> -->
 
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
-<%= link_to 'Back', invoices_path %>
+<%= link_to 'Back', invoices_path, class:'btn btn-default' %>

@@ -104,14 +104,15 @@
                   <ul role="menu" class="sub-menu">
                     <li><a href=""><%= link_to "Products", products_path%></a></li>
                     <li><a href="product-details.html">Product Details</a></li> 
-                    <li><a href="checkout.html">Checkout</a></li> 
-                    <li><a href="cart.html">Cart</a></li> 
+                    <li><a href=""><%= link_to "Check Out", invoices_path%></a></li> 
+                    <li><a href=""><%= link_to "Cart", carts_path%></a></li> 
                 </ul>
                 </li> 
                 <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-                    <li><a href="blog-single.html">Blog Single</a></li>
+                                        <li><a href="">
+                                         <%= link_to "Blog List", blogs_list_path%></a></li>
+                    <li><a href=""><%= link_to "Blog Single", blogs_single_path %></a></li>
                                     </ul>
                                 </li> 
                 <li><a href="404.html">404</a></li>

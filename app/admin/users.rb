@@ -42,7 +42,6 @@ ActiveAdmin.register User do
   column :created_at
   column :updated_at
   column :Address
-  column :password
   #Them vao status_tag cho column is_active
   column :is_active do |s|
    s.active_for_authentication? ? status_tag(I18n.t("yes"), class:"account_active") : status_tag(I18n.t("no"), class:"account_inactive")

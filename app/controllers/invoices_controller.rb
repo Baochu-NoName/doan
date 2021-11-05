@@ -1,6 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :set_order
-  before_action :set_invoice
+  before_action :set_invoice, only: [:show, :update]
   before_action :set_user
   before_action :set_order_items
   before_action :set_order_item
@@ -13,7 +13,6 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
   end
   def edit
-    @invoice = Invoice.find(params[:id])
   end
   def new
     @invoice = current_user.invoices.new
@@ -33,7 +32,9 @@ class InvoicesController < ApplicationController
   def update
     @invoice = current_user.invoices.find(params[:id])
     @invoice.update(invoice_params)
-    respond_with(@invoice)
+    flash[:notice] = "Update successfully"
+    flash.keep(:notice)
+    redirect_to invoices_path
   end
   private
     def set_invoice

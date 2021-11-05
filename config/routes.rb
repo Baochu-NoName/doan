@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'blogs/list'
+  get 'blogs/single'
   resources :invoices
   devise_for :users 
   resources :products do
@@ -7,7 +9,7 @@ end
   get 'carts', to:'carts#show'
   get 'invoices/new', to:'invoices#new'
   get 'invoices', to: 'invoices#index'
-  resources :invoices  
+  resources :invoices, except: [:edit, :destroy]
   resources :orders
   resources :order_items
   resources :carts

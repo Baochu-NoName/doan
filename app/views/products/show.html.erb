@@ -201,7 +201,7 @@
                 <br>
                   <label>Quantity:</label>
                   <%= form_with model: @order_item, remote: true do |f| %>
-                    <%= f.hidden_field :product_id, value: @product.id %>
+                    <%= f.hidden_field :product_id, value: @product.id, readonly: true%>
                     <%= f.number_field :quantity, value: 1, min: 1 %>
                   <%= f.button :submit, class:"btn btn-default cart" do%>
                     <i class="fa fa-shopping-cart"> Add to cart</i>
@@ -454,6 +454,7 @@
                       <div class="single-products">
                         <div class="productinfo text-center">
                           <img src="images/home/recommend3.jpg" alt="" />
+                          <%= image_tag('home/recommend3', alt:"")%>
                           <h2>$56</h2>
                           <p>Easy Polo Black Edition</p>
                           <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>

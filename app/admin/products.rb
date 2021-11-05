@@ -17,7 +17,7 @@ ActiveAdmin.register Product do
   end
  
   column :description do |product|
-    truncate(product.description, length:100)
+    truncate(product.description, length:10)
   end
   column "Old Price", :price do |product|
     number_to_currency product.price
