@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_02_140027) do
+ActiveRecord::Schema.define(version: 2021_11_08_055642) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -66,6 +66,13 @@ ActiveRecord::Schema.define(version: 2021_11_02_140027) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "invoice_items", force: :cascade do |t|
     t.string "product_image"
     t.string "product_name"
@@ -85,6 +92,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_140027) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.integer "product_id"
     t.index ["order_id"], name: "index_invoices_on_order_id"
   end
 
@@ -127,6 +135,18 @@ ActiveRecord::Schema.define(version: 2021_11_02_140027) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "user_email"
+    t.decimal "rating", precision: 2, scale: 1
+    t.text "comment"
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_reviews_on_product_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", default: ""
     t.string "phone", default: ""
@@ -147,4 +167,6 @@ ActiveRecord::Schema.define(version: 2021_11_02_140027) do
   add_foreign_key "invoices", "orders"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
+  add_foreign_key "reviews", "products"
+  add_foreign_key "reviews", "users"
 end

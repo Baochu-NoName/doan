@@ -511,8 +511,44 @@
                 </a>      
             </div>
           </div><!--/recommended_items-->
-          
+          <h1>Leave a comment</h1>
+
+      <%= "#{@avg_review}"%><div class="star-rating" data-score= <%= @avg_review %> ></div>
+      <em> <%= "#{@reviews.length} reviews" %></em>
+      <% if user_signed_in?%>
+
+        <% if @reviews.blank? %>
+          <p>No reviews yet</p>
+        <% else %>
+          <% @reviews.each do |review|%>
+            <p><%= review.user_email %></p>
+            <div class= "star-rating" data-score = <%= review.rating %> ></div>
+            <p><%= review.comment %></p>       
+        <%end%> 
+        <%end%>
+        
+        <% if @invoices.present? %>
+        <% @invoices.each do |invoice| %>
+        <% if invoice.status.to_s == "completed" && invoice.product_id == @product.id %>
+            <%= link_to "Write a comment",  new_product_review_path(@product)%>  
+        <%else%> 
+        <%end%>
+        <%end%>
+        <%end%>
+      <%end%>
         </div>
       </div>
     </div>
 </section>
+
+<script>
+    $(".star-rating").raty({
+      path: '/assets/',
+      readOnly: true,
+      half: true,
+      hints: [['bad 1/2', 'bad'], ['poor 1/2', 'poor'], ['regular 1/2', 'regular'], ['good 1/2', 'good'], ['gorgeous 1/2', 'gorgeous']],
+      score: function(){
+        return $(this).attr('data-score');
+      }
+    });
+</script>

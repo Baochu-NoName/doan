@@ -39,12 +39,12 @@
   </head>
   <body>
     <%= render 'homepage/header' %>
-    <% if notice %>
-     <p class="alert alert-success alert-dismissible fade show"><%= notice %></p>
-   <% end %>
-   <% if alert %>
-    <p class="alert alert-danger alert-dismissible fade show"><%= alert %></p>
-   <% end %>
+    <% if notice || alert%>
+    <%= render 'layouts/alerts' %>
+    <%end%>
+ <!--    <3%= flash.each do |name, msg| %>
+    <3%= content_tag :div, msg, class: "alert alert-warning" %>
+  <3% end %> -->
       <%= yield %>
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -63,12 +63,7 @@
     <%= javascript_include_tag "bootstrap.min.js" %>
     <%= javascript_include_tag "jquery.prettyPhoto.js" %>
     <%= javascript_include_tag "main.js" %>
-  <!-- <script src="../assets/javascripts/jquery.js"></script>
-  <script src="../assets/javascripts/price-range.js"></script>
-  <script src="../assets/javascripts/jquery.scrollUp.min.js"></script>
-  <script src="../assets/javascripts/bootstrap.min.js"></script>
-  <script src="../assets/javascripts/jquery.prettyPhoto.js"></script>
-  <script src="../assets/javascripts/main.js"></script> -->
+    <%= javascript_include_tag "jquery.raty.js" %>
   </body> 
 </html>
 

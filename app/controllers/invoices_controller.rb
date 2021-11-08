@@ -1,6 +1,7 @@
 class InvoicesController < ApplicationController
   before_action :set_order
   before_action :set_invoice, only: [:show, :update]
+   before_action :set_product
   before_action :set_user
   before_action :set_order_items
   before_action :set_order_item
@@ -20,6 +21,7 @@ class InvoicesController < ApplicationController
   end
   def create
     @invoice = current_user.invoices.create(invoice_params)
+    @invoice.product_id = @product.id
     if @invoice.save
       flash[:notice] = "Invoice was created successfully!"
       redirect_to invoices_path
@@ -54,6 +56,9 @@ class InvoicesController < ApplicationController
     end
     def set_order
       @order = current_order
+    end
+     def set_product
+      @product = Product.find_by(params[:product_id])
     end
     def set_user
       @user = current_user

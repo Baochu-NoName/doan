@@ -1,6 +1,6 @@
 
 <h1>Invoices</h1>
-<table class="table table-striped">
+ <table class="table table-striped">
   <thead>
     <tr>
       <th>Username</th>
@@ -14,21 +14,25 @@
   <tbody>
     <% if user_signed_in? %>  
     <% if current_user %>
+    <% if @invoices.present? %>
+    <tr>
     <% @invoices.each do |invoice| %>
-      <tr>
         <td><%= invoice.username %></td>
         <td><%= invoice.phone_number %></td>
         <td><%= invoice.status %></td>
-        <td><%= invoice.total.to_s.to_d %></td>
-        <td><%= link_to 'Show', invoice %></td>
+        <td><%= number_to_currency invoice.total.to_s.to_d %></td>
+        <td><%= link_to 'Show', invoice %></td> 
       </tr>
-  </tbody>
-     <% end %>
-     <% end %>
-     <% end %> 
-</table>
-
-  
+      <% end %>
+     <% else %>
+     <br/><hr>
+       <div class="col-12">
+       <p><h2 style="text-align: center;">No invoice yet</h2></p> 
+      </div>
+      <% end %>
+       <% end %>
+      <% end %>
+    </tbody>
+</table> 
 <br>
-
 <%= link_to 'New Invoice', new_invoice_path %>

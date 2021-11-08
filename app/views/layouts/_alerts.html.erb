@@ -1,16 +1,13 @@
 <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">  -->
  <!--  <#%= notice%> -->
 <!--  </div> -->
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <%= notice%>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
- <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <% flash.each do |type, msg| %>
+<div class="alert alert-warning alert-dismissible " role="alert">
+<% flash.each do |type, msg| %>
     <%= content_tag :div, msg, class: build_alert_classes(type) %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 <% end %>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+  
 
 <!-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
   <3%= alert%>

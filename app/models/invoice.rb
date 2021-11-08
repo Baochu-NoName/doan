@@ -9,5 +9,4 @@ class Invoice < ApplicationRecord
 	validates :status, inclusion: {in: STATUS_OPTIONS}
 	validates :order_id, presence: true
 	validates :user_id, presence: true
-	# validates :invoice_id, presence: true
 end

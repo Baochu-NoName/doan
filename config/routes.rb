@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users 
   resources :products do
   get 'products/:id', to:'product#show'
+  resources :reviews, except: [:show, :index]
 end
   get 'carts', to:'carts#show'
   get 'invoices/new', to:'invoices#new'

@@ -5,6 +5,13 @@ class ProductsController < ApplicationController
   end
   def show
     @order_item = current_order.order_items.new
+    @reviews = Review.where(product_id: @product.id).order('created_at DESC')
+    if @reviews.blank?
+      @avg_review = 0
+    else
+      @avg_review = @reviews.average(:rating).round(2)
+    end
+    @invoices = current_user.invoices.all
   end
 
 

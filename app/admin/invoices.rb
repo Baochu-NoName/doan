@@ -20,7 +20,7 @@ ActiveAdmin.register Invoice do
     actions
   end
 
-   # hiển thị thông tin invoices(chế độ xem)
+  # hiển thị thông tin invoices(chế độ xem)
   show do
     panel "Invoice Info" do
       attributes_table_for invoice do
@@ -47,19 +47,6 @@ ActiveAdmin.register Invoice do
     end
   end
 
-  # show do
-  #   panel "Product Details" do
-  #     attributes_table_for invoice.invoice_items do
-  #       row :product_name
-  #       row :product_quantity 
-  #       row "Unit Price", :product_unit_price do |unit|
-  #         number_to_currency unit.product_unit_price 
-  #       end
-  #       row :created_at
-  #       row :updated_at    
-  #     end    
-  #   end
-  # end
 
   form do |f|
     f.inputs "Invoice Details" do

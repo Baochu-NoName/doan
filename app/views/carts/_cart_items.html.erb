@@ -53,7 +53,7 @@
                 </div>
               </td>
               <td class="cart_total">
-                <p class="cart_total_price"><%= item.total %></p>
+                <p class="cart_total_price"><%= number_to_currency item.total %></p>
               </td> 
               <td class="cart_update">
               <%= f.submit "Update Cart", class:"btn btn-default update", role:"button" %></td>

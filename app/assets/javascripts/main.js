@@ -27,6 +27,7 @@ $(document).ready(function () {
             scrollImg: false, // Set true to use image
             activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
             zIndex: 2147483647 // Z-Index for the overlay
+             $(".alert-warning").slideDown(300).delay(5000).slideUp(300);
         });
     });
 });
