@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :orders, dependent: :destroy
   has_many :invoices, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   #Hien thi thong tin tai khoan hoat dong hay khong hoat dong
   scope :active, ->{where.not(is_active:false)}
   scope :inactive, ->{where(is_active:false)}

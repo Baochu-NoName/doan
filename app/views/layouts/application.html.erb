@@ -17,10 +17,7 @@
     <link href="/assets/responsive.css" rel="stylesheet">
      <!-- Bootstrap CSS -->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->       
+      
     <link rel="shortcut icon" href="ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
@@ -28,23 +25,19 @@
     <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
    
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script> -->
     
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+   
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
   </head>
   <body>
     <%= render 'homepage/header' %>
     <% if notice || alert%>
     <%= render 'layouts/alerts' %>
     <%end%>
- <!--    <3%= flash.each do |name, msg| %>
-    <3%= content_tag :div, msg, class: "alert alert-warning" %>
-  <3% end %> -->
       <%= yield %>
     <!-- Optional JavaScript; choose one of the two! -->
 

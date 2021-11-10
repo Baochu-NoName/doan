@@ -16,6 +16,7 @@ ActiveAdmin.register_page "Dashboard" do
             column :name do |product|
               link_to product.name, [:admin, product]
             end
+            column :category
             column :created_at
             column :released_at
           end

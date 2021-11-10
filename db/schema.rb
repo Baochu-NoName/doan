@@ -131,8 +131,10 @@ ActiveRecord::Schema.define(version: 2021_11_08_055642) do
     t.datetime "released_at"
     t.integer "sold_quantity"
     t.decimal "rating"
+    t.integer "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -167,6 +169,7 @@ ActiveRecord::Schema.define(version: 2021_11_08_055642) do
   add_foreign_key "invoices", "orders"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
+  add_foreign_key "products", "categories"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"
 end

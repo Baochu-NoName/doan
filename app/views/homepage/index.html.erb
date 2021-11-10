@@ -22,8 +22,8 @@
 									</a>
 								</div>
 								<div class="col-sm-6">
-									<img src="home/girl1.jpg" class="girl img-responsive" alt="" />
-									<img src="home/pricing.png"  class="pricing" alt="" />
+									<%= image_tag('home/girl1', class:"girl img-responsive",alt:"") %>
+									<%= image_tag('home/pricing', class:"pricing",alt:"") %>
 								</div>
 							</div>
 							<div class="item">
@@ -34,8 +34,9 @@
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="home/girl2.jpg" class="girl img-responsive" alt="" />
-									<img src="home/pricing.png"  class="pricing" alt="" />
+					
+									<%= image_tag('home/girl2', class:"girl img-responsive",alt:"") %>
+									<%= image_tag('home/pricing', class:"pricing",alt:"") %>
 								</div>
 							</div>
 							
@@ -47,8 +48,8 @@
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="home/girl3.jpg" class="girl img-responsive" alt="" />
-									<img src="home/pricing.png" class="pricing" alt="" />
+									<%= image_tag('home/girl3', class:"girl img-responsive", alt:"") %>
+									<%= image_tag('home/pricing', class:"pricing", alt:"") %>
 								</div>
 							</div>
 							
@@ -75,106 +76,18 @@
 						<h2>Category</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 							<div class="panel panel-default">
+								<% @categories.each do |cat| %>
 								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Sportswear
-										</a>
-									</h4>
+			                        <h4 class="panel-title">
+			                      	  <a href="">
+			  						    <%= link_to cat.name, products_path(cate: cat.id) %>
+			  
+			  						  </a>
+			  						  <span class="badge bg-primary"> <%= cat.products.count %>
+			  						  </span>
+			  					    </h4>
 								</div>
-								<div id="sportswear" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Nike </a></li>
-											<li><a href="#">Under Armour </a></li>
-											<li><a href="#">Adidas </a></li>
-											<li><a href="#">Puma</a></li>
-											<li><a href="#">ASICS </a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#mobile">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											mobile and gadgets
-										</a>
-									</h4>
-								</div>
-								<div id="mobile" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Mobile Phones & Tablets</a></li>
-											<li><a href="#">Ipads</a></li>
-											<li><a href="#">Macbooks</a></li>
-											<li><a href="#">Mobile accessories</a></li>
-											<li><a href="#">Gadgets</a></li>
-											<li><a href="#">Memmory cards</a></li>
-											<li><a href="#">Batteries & Powerbanks</a></li>
-											<li><a href="#">Digital Wearables</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Womens
-										</a>
-									</h4>
-								</div>
-								<div id="womens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Fendi</a></li>
-											<li><a href="#">Guess</a></li>
-											<li><a href="#">Valentino</a></li>
-											<li><a href="#">Dior</a></li>
-											<li><a href="#">Versace</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Toys, Kids & Babies</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Fashion</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Home Appliances</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Food & beverages</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Clothing</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Bags</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Pet Food & Supplies</a></h4>
-								</div>
+								<% end %>
 							</div>
 						</div><!--/category-products-->
 					
@@ -201,7 +114,6 @@
 						</div><!--/price-range-->
 						
 						<div class="shipping text-center"><!--shipping-->
-							<img src="home/shipping.jpg" alt="" />
 							<%=image_tag('home/shipping.jpg', alt:"Shipping") %>
 						</div><!--/shipping-->
 					
@@ -229,7 +141,6 @@
 												<a href="product-details.html" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 										</div>
-									<img src="home/sale.png" class="new" alt="" />	
 									<%= image_tag('home/sale.png', alt:"sale", class: "new")%>
 									<div class="choose">
 										<ul class="nav nav-pills nav-justified">
@@ -261,7 +172,7 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="home/product2.jpg" alt="" />
+											<%= image_tag('home/product2', alt:"") %>
 											<h2>$56</h2>
 											<h4>$80</h4>
 											<p>Easy Polo Black Edition</p>
@@ -274,7 +185,7 @@
 												<a href="product-details.html" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 										</div>
-									<img src="home/sale.png" class="new" alt="" />	
+									<%= image_tag('home/sale', class:"new", alt:"") %>
 									<div class="choose">
 										<ul class="nav nav-pills nav-justified">
 											<li><a href="#"><i class="sold"></i>999 Sold</a></li>
@@ -303,7 +214,7 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="home/product6.jpg" alt="" />
+											<%= image_tag('home/product6', alt:"") %>
 											<h2>$89</h2>
 											<h4>$100</h4>
 											<p>Easy Polo Black Edition</p>
@@ -316,7 +227,7 @@
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 										</div>
-									<img src="home/sale.png" class="new" alt="" />	
+									<%= image_tag('home/sale', class:"new", alt:"") %>	
 									<div class="choose">
 										<ul class="nav nav-pills nav-justified">
 											<li><a href="#"><i class="sold"></i>650 Sold</a></li>
@@ -345,7 +256,7 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="home/product3.jpg" alt="" />
+										<%= image_tag('home/product3',alt:"") %>
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
 									</div>
@@ -368,7 +279,7 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="home/product4.jpg" alt="" />
+										<%= image_tag('home/product4',alt:"") %>
 										<h2>$56</h2>
 										<h4>$100</h4>
 										<p>Easy Polo Black Edition</p>
@@ -379,7 +290,7 @@
 											<p>Easy Polo Black Edition</p>
 										</div>
 									</div>
-									<img src="home/new.png" class="new" alt="" />
+									<%= image_tag('home/new', class:"new", alt:"") %>
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
@@ -392,7 +303,7 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="home/product5.jpg" alt="" />
+										<%= image_tag('home/product5', alt:"") %>
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
 									</div>
@@ -434,7 +345,7 @@
 										<a href="product-details.html" class="">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="home/gallery1.jpg" alt="" />
+												<%= image_tag('home/gallery1', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="cart.html" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -448,7 +359,7 @@
 										<a href="product-details.html">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="home/gallery2.jpg" alt="" />
+												<%= image_tag('home/gallery2', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="cart.html" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -461,7 +372,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="home/gallery3.jpg" alt="" />
+												<%= image_tag('home/gallery3', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -474,7 +385,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="home/gallery4.jpg" alt="" />
+												<%= image_tag('home/gallery4', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -490,7 +401,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="home/gallery4.jpg" alt="" />
+												<%= image_tag('home/gallery4', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -529,7 +440,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
+												<%= image_tag('home/gallery1', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -545,7 +456,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery3.jpg" alt="" />
+												<%= image_tag('home/gallery3', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -558,7 +469,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery4.jpg" alt="" />
+												<%= image_tag('home/gallery4', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -571,7 +482,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
+												<%= image_tag('home/gallery1', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -584,7 +495,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery2.jpg" alt="" />
+												<%= image_tag('home/gallery2', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -600,7 +511,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
+												<%= image_tag('home/gallery1', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -614,6 +525,7 @@
 										<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="images/home/gallery2.jpg" alt="" />
+												<%= image_tag('home/gallery2', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -626,7 +538,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery3.jpg" alt="" />
+												<%= image_tag('home/gallery3', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -639,7 +551,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery4.jpg" alt="" />
+												<%= image_tag('home/gallery4', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -655,7 +567,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery2.jpg" alt="" />
+												<%= image_tag('home/gallery2', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -668,7 +580,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery4.jpg" alt="" />
+												<%= image_tag('home/gallery4', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -681,7 +593,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery3.jpg" alt="" />
+												<%= image_tag('home/gallery3', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -694,7 +606,7 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
+												<%= image_tag('home/gallery1', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -717,7 +629,7 @@
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
+													<%= image_tag('home/recommend1', alt:"") %>
 													<h2>$56</h2>
 													<p>Easy Polo Black Edition</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -730,7 +642,7 @@
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
+													<%= image_tag('home/recommend2',alt:"") %>
 													<h2>$56</h2>
 													<p>Easy Polo Black Edition</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -743,7 +655,7 @@
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
+													<%= image_tag('home/recommend3', alt:"") %>
 													<h2>$56</h2>
 													<p>Easy Polo Black Edition</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -758,7 +670,7 @@
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
+													<%= image_tag('home/recommend1', alt:"") %>
 													<h2>$56</h2>
 													<p>Easy Polo Black Edition</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -771,7 +683,7 @@
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
+													<%= image_tag('home/recommend2', alt:"") %>
 													<h2>$56</h2>
 													<p>Easy Polo Black Edition</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -784,7 +696,7 @@
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
+													<%= image_tag('home/recommend3', alt:"") %>
 													<h2>$56</h2>
 													<p>Easy Polo Black Edition</p>
 													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>

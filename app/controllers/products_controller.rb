@@ -1,7 +1,13 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update]
   def index
-    @products = Product.all.paginate(page: params[:page], per_page: 6)
+    @categories = Category.all
+    category = params[:cate] 
+    if !category.nil?
+      @products = Product.where(category_id: category).paginate(page: params[:page], per_page: 6)
+    else
+      @products = Product.search(params[:search]).paginate(page: params[:page], per_page: 6)
+  end
   end
   def show
     @order_item = current_order.order_items.new
@@ -11,7 +17,7 @@ class ProductsController < ApplicationController
     else
       @avg_review = @reviews.average(:rating).round(2)
     end
-    @invoices = current_user.invoices.all
+    @invoices = current_user.invoices.all if current_user
   end
 
 

@@ -4,7 +4,9 @@ ActiveAdmin.register Product do
   # cho phép Rails controllers nhận giá trị truyền từ views
   # Cho các thuộc tính được khai báo dưới đây
 
-  permit_params :image, :name, :description, :price, :sold_quantity, :new_price, :available,:per_page, :released_at, :rating, :created_at
+  permit_params :image, :name, :description, :price, 
+  :sold_quantity, :new_price, :available,
+  :per_page, :released_at,:rating, :created_at, :category_id
   
   index do
   selectable_column
@@ -27,11 +29,13 @@ ActiveAdmin.register Product do
   end
   column :released_at 
   column :created_at
+  column :category
   column "Rating", :rating do |product|
   if product.rating.blank?
   else       
     render_stars(product.rating)
   end
+  
   end
   actions
   end 
@@ -41,6 +45,7 @@ ActiveAdmin.register Product do
   filter :released_at
   filter :sold_quantity
   filter :rating
+  filter :category
 
 
 show do
@@ -66,6 +71,9 @@ show do
           render_stars(product.rating)
         end
       end
+      row "Category", :category do |product|
+          link_to "#{product.category}", admin_category_path
+        end
     end
   end
 end
@@ -80,6 +88,7 @@ end
     f.input :released_at
     f.input :sold_quantity 
     f.input :rating,as: :select,include_blank: false,collection: decimal_selection_array(1,5),selected: f.product.rating || 'Default'
+    f.input :category_id,label: "Category",as: :select,include_blank: false, collection: Category.all.map{|c| [c.name, c.id]}
   end
   f.actions
   # or
