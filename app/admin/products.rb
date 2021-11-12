@@ -6,7 +6,7 @@ ActiveAdmin.register Product do
 
   permit_params :image, :name, :description, :price, 
   :sold_quantity, :new_price, :available,
-  :per_page, :released_at,:rating, :created_at, :category_id
+  :per_page, :released_at,:rating, :created_at, :category_id, :brand_id
   
   index do
   selectable_column
@@ -30,6 +30,7 @@ ActiveAdmin.register Product do
   column :released_at 
   column :created_at
   column :category
+  column :brand
   column "Rating", :rating do |product|
   if product.rating.blank?
   else       
@@ -46,6 +47,7 @@ ActiveAdmin.register Product do
   filter :sold_quantity
   filter :rating
   filter :category
+  filter :brand
 
 
 show do
@@ -72,7 +74,10 @@ show do
         end
       end
       row "Category", :category do |product|
-          link_to "#{product.category}", admin_category_path
+          link_to "#{product.category.name}", admin_category_path
+        end
+        row "Brand", :brand do |product|
+          link_to "#{product.brand.name}", admin_brand_path
         end
     end
   end
@@ -89,6 +94,7 @@ end
     f.input :sold_quantity 
     f.input :rating,as: :select,include_blank: false,collection: decimal_selection_array(1,5),selected: f.product.rating || 'Default'
     f.input :category_id,label: "Category",as: :select,include_blank: false, collection: Category.all.map{|c| [c.name, c.id]}
+     f.input :brand_id,label: "Brand",as: :select,include_blank: false, collection: Brand.all.map{|b| [b.name, b.id]}
   end
   f.actions
   # or

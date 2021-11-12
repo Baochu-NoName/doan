@@ -95,12 +95,12 @@
 							<h2>Brands</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(50)</span>Apple</a></li>
-									<li><a href="#"> <span class="pull-right">(56)</span>Samsung</a></li>
-									<li><a href="#"> <span class="pull-right">(27)</span>Johnson & Johnson</a></li>
-									<li><a href="#"> <span class="pull-right">(32)</span>Mercedes-Benz</a></li>
-									<li><a href="#"> <span class="pull-right">(5)</span>Rolls-Royce</a></li>
-									<li><a href="#"> <span class="pull-right">(4)</span>Covid kit test</a></li>
+								<% @brands.each do |brand| %>
+			                      <li><%= link_to(products_path(brand: brand.id)) do %>
+			                    <div><%= brand.name %><span class="pull-right"><%= brand.products.count %></span></div>
+			                    </li>
+			                  <% end %>
+			                  <% end %>
 								</ul>
 							</div>
 						</div><!--/brands_products-->
@@ -524,7 +524,6 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="images/home/gallery2.jpg" alt="" />
 												<%= image_tag('home/gallery2', alt:"") %>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>

@@ -1,7 +1,7 @@
 class InvoicesController < ApplicationController
   before_action :set_order
   before_action :set_invoice, only: [:show, :update]
-   before_action :set_product
+  before_action :set_product
   before_action :set_user
   before_action :set_order_items
   before_action :set_order_item

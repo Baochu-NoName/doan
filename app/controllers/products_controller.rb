@@ -1,15 +1,10 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update]
   def index
-    @categories = Category.all
-    category = params[:cate] 
-    if !category.nil?
-      @products = Product.where(category_id: category).paginate(page: params[:page], per_page: 6)
-    else
-      @products = Product.search(params[:search]).paginate(page: params[:page], per_page: 6)
-  end
+    checkProduct(params[:cate], params[:brand])
   end
   def show
+    checkProduct(params[:cate], params[:brand])
     @order_item = current_order.order_items.new
     @reviews = Review.where(product_id: @product.id).order('created_at DESC')
     if @reviews.blank?
@@ -21,11 +16,24 @@ class ProductsController < ApplicationController
   end
 
 
+
   def new
     @product = Product.find(params[:id])
   end
 
   private 
+  
+  def checkProduct(category = params[:cate], brand = params[:brand])     
+    @categories = Category.all
+    @brands = Brand.all
+    if !category.nil?
+      @products = Product.where(category_id: category).paginate(page: params[:page], per_page: 6)
+    elsif !brand.nil?
+      @products = Product.where(brand_id: brand).paginate(page: params[:page], per_page: 6)
+    else
+      @products = Product.search(params[:search]).paginate(page: params[:page], per_page: 6)
+    end
+  end
 
   def set_product
     @product = Product.find(params[:id])

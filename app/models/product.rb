@@ -3,6 +3,7 @@
 	has_many :orders, through: :order_items
 	has_many :invoices
 	belongs_to :category
+	belongs_to :brand
 	has_many :reviews
 	has_one_attached :image
 	has_many_attached :images

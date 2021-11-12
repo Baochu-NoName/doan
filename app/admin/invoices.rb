@@ -5,6 +5,7 @@ ActiveAdmin.register Invoice do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
+  actions :all, except: [:destroy]
   permit_params :status, :total, :username, :phone_number, 
   :order_id, :user_id,
   invoice_items_attributes: [:id, :product_name, :product_unit_price, :product_quantity]

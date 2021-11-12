@@ -39,7 +39,9 @@
               <ul class="nav navbar-nav">
                 
                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                <li><a href="index.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                <li><!-- <a href=""><i class="fa fa-crosshairs"></i> Checkout</a> -->
+                  <%= link_to ('<i class="fa fa-star"></i> Checkout').html_safe, invoices_path %>
+                </li>
                 <% if total_cart_items %>
                 <li>
                  <div class="cart-fixed">
@@ -55,8 +57,7 @@
                   <% if current_user %>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      
-                      <i class="fa fa-user">   <%= current_user.name%></i>
+                      <i class="fa fa-user"></i>  <%= current_user.name%>
                      </a>
                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <li><%= link_to " Account Settings", edit_user_registration_path, class: "dropdown-item"%></li>
@@ -69,10 +70,10 @@
                 <%end%>
                 <%else%>
                 <li> 
-                  <%=link_to ('<i class="fa fa-lock"> Login</i>').html_safe, new_user_session_path%>
+                  <%=link_to ('<i class="fa fa-lock"></i> Login').html_safe, new_user_session_path%>
                 </li>
                  <li> 
-                <%=link_to ('<i class="fa fa-unlock"> Sign up</i>').html_safe, new_user_registration_path%>
+                <%=link_to ('<i class="fa fa-unlock"></i> Sign up').html_safe, new_user_registration_path%>
                 </li>
                 
                 <%end%>
@@ -103,7 +104,7 @@
                 <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                   <ul role="menu" class="sub-menu">
                     <li><a href=""><%= link_to "Products", products_path%></a></li>
-                    <li><a href="product-details.html">Product Details</a></li> 
+                    <!-- <li><a href="product-details.html">Product Details</a></li>  -->
                     <li><a href=""><%= link_to "Check Out", invoices_path%></a></li> 
                     <li><a href=""><%= link_to "Cart", carts_path%></a></li> 
                 </ul>
@@ -122,6 +123,7 @@
           </div>
           <div class="col-sm-3">
             <div class="search_box pull-right">
+             <!--  <input type="input" placeholder="Search"/> -->
             <%= form_tag products_path, method: :get do |f| %>
             <%= text_field_tag :search, (params[:search] || ""), placeholder:"Search products" %>
             <%= submit_tag "Search", style:"display:none" %>

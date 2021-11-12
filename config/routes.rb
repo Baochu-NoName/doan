@@ -1,24 +1,20 @@
 Rails.application.routes.draw do
-  get 'blogs/list'
-  get 'blogs/single'
   resources :invoices
   devise_for :users 
   resources :products do
   get 'products/:id', to:'product#show'
   resources :reviews, except: [:show, :index]
 end
-  get 'carts', to:'carts#show'
-  get 'invoices/new', to:'invoices#new'
-  get 'invoices', to: 'invoices#index'
+
   resources :invoices, except: [:edit, :destroy]
   resources :orders
   resources :order_items
-  resources :carts
-   # post 'products/order_items/:id',to:'products#order_items', as:'order_items' 
-  #post 'products/add_to_cart/:id', to:'products#add_to_cart', as: 'add_to_cart'
-  #delete 'products/remove_from_cart/:id', to:'products#remove_from_cart', as: 'remove_from_cart'
-
   root 'homepage#index'
+  get 'blogs/list'
+  get 'blogs/single'  
+  get 'carts', to:'carts#show'
+  get 'invoices/new', to:'invoices#new'
+  get 'invoices', to: 'invoices#index'
   get 'errors/not_found'
   get 'errors/internal_server_error'
   #get 'homepage/index'

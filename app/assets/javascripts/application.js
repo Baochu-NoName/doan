@@ -10,7 +10,6 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-require("@rails/ujs")
 global.$ = jQuery = require('jquery')
 window.$ = window.jQuery = require('jquery');
 Rails.start()
