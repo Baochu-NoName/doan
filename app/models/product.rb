@@ -1,7 +1,7 @@
  class Product < ApplicationRecord
 	has_many :order_items, dependent: :destroy
 	has_many :orders, through: :order_items
-	has_many :invoices
+	has_many :invoices, through: :order_items
 	belongs_to :category
 	belongs_to :brand
 	has_many :reviews

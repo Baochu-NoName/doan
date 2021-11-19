@@ -51,7 +51,7 @@ ActiveAdmin.register Invoice do
 
   form do |f|
     f.inputs "Invoice Details" do
-      f.input :status, as: :select, collection: Invoice::STATUS_OPTIONS
+      f.input :status, as: :select, include_blank: false, collection: Invoice::STATUS_OPTIONS
     end
     f.actions
   end

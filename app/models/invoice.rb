@@ -9,4 +9,11 @@ class Invoice < ApplicationRecord
 	validates :status, inclusion: {in: STATUS_OPTIONS}
 	validates :order_id, presence: true
 	validates :user_id, presence: true
+	serialize :product_ids, Array
+	before_validation :sanitize_product_ids
+
+	private
+	def sanitize_product_ids
+    	self.product_ids = product_ids.reject(&:blank?)&.uniq
+  	end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_143619) do
+ActiveRecord::Schema.define(version: 2021_11_18_075752) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_11_12_143619) do
 
   create_table "invoice_items", force: :cascade do |t|
     t.string "product_image"
+    t.integer "product_id"
     t.string "product_name"
     t.decimal "product_unit_price", precision: 6, scale: 2
     t.integer "product_quantity"
@@ -99,19 +100,20 @@ ActiveRecord::Schema.define(version: 2021_11_12_143619) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.integer "product_id"
+    t.text "product_ids"
     t.index ["order_id"], name: "index_invoices_on_order_id"
   end
 
   create_table "order_items", force: :cascade do |t|
     t.integer "quantity"
-    t.integer "product_id", null: false
-    t.integer "order_id"
     t.decimal "total", precision: 6, scale: 2
     t.decimal "unit_price", precision: 6, scale: 2
+    t.integer "product_id", null: false
+    t.integer "order_id"
+    t.integer "invoice_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "invoice_id"
+    t.index ["invoice_id"], name: "index_order_items_on_invoice_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end

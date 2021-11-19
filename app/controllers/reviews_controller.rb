@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :set_product
-  before_action :set_review, except: %i[show index]
   before_action :authenticate_user!
   def new
     @review = Review.new
@@ -29,6 +29,7 @@ class ReviewsController < ApplicationController
       render :edit
     end
   end
+  
   def destroy
     @review.destroy
     flash[:notice] = "Review was sucessfully deleted"
@@ -37,10 +38,10 @@ class ReviewsController < ApplicationController
 
   private
   def set_review
-    @review = Review.find_by(params[:id])
+    @review = Review.find(params[:id])
   end
   def set_product
-    @product = Product.find_by(params[:product_id])
+    @product = Product.find(params[:product_id])
   end
   def review_params
     params.require(:review).permit(:product_id, :user_id,:user_email, :rating, :comment)

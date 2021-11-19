@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
     if @reviews.blank?
       @avg_review = 0
     else
-      @avg_review = @reviews.average(:rating).round(2)
+      @avg_review = @reviews.average(:rating).round(2) unless @reviews.average(:rating).nil?
     end
     @invoices = current_user.invoices.all if current_user
   end

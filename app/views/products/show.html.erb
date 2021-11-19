@@ -415,7 +415,8 @@
      <h4><%= "#{@avg_review}"%> stars</h4>
      <div class="star-rating" data-score= <%= @avg_review %> ></div>
       <em> <%= "#{@reviews.length} reviews" %></em>
-      <% if user_signed_in?%>
+      <hr>
+     
 
         <% if @reviews.blank? %>
           <p>No reviews yet</p>
@@ -424,18 +425,29 @@
             <p><%= review.user_email %></p>
             <div class= "star-rating" data-score = <%= review.rating %> ></div>
             <p><%= review.comment %></p>       
-        <%end%> 
-        <%end%>
-        
+        <% end %> 
+        <% end %>
+      <% if user_signed_in?%>
+      
         <% if @invoices.present? %>
-        <% @invoices.each do |invoice| %>
-        <% if invoice.status.to_s == "completed" && invoice.product_id == @product.id %>
-            <%= link_to "Write a comment",  new_product_review_path(@product), class:"btn btn-default"%>  
-        <%else%> 
-        <%end%>
-        <%end%>
-        <%end%>
-      <%end%>
+
+            <% @invoices.each do |invoice| %>
+              <% if invoice.status.to_s == "completed" && invoice.invoice_items.pluck(:product_id).include?(@product.id) %>
+                <% if !current_user.reviews.exists? %>
+                  <%= link_to "Write a comment",  new_product_review_path(@product), class:"btn btn-primary"%>  
+                <% else %>
+                  <% if !@reviews.pluck(:product_id).include?(@product.id) %>
+                  <%= link_to "Write a comment",  new_product_review_path(@product), class:"btn btn-default"%> 
+                  <% else %>
+                  <%= link_to "Edit a comment",  edit_product_review_path(@product), class:"btn btn-default"%> 
+                  <% end %>
+                <% end %>
+              <% else %> 
+              <% end %>
+            <% end %>
+          <% end %>
+          
+      <% end %>
         </div>
       </div>
     </div>
@@ -452,3 +464,4 @@
       }
     });
 </script>
+<!-- <3%= debug(@invoice.product_ids) %> -->

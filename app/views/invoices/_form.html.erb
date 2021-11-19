@@ -34,7 +34,7 @@
   </div>
 </div>
   <% @order_items.each do |item| %>
-  <%= form.fields_for :invoice_items, @invoice.invoice_items.build do |invoice_item|%>
+  <%= form.fields_for :invoice_items, @invoice.invoice_items.build do |invoice_item| %>
    <%= render 'items', f: invoice_item, fo: item %>
    <% end %>
     <% end %>
@@ -48,4 +48,4 @@
 <% end %>
 <% end %>
 
-<!-- <3%= debug(@invoice.errors.inspect) %> -->
+  <%= debug(@invoice.product_ids) %>
