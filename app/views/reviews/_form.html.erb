@@ -22,8 +22,14 @@
 <%= f.text_area :comment, class:"form-control"%>
 </div>
 <br>
-<div class="actions">
-<%= f.submit :Submit, class:"btn btn-primary"%> 
+
+<div class="row">
+    <div class="col-sm-12">
+          <div class="total_area">
+              <a href=""><%= f.submit :Submit, class:"btn btn-success"%></a>
+              <a href=""><%= link_to "Back", product_path(@product), class:"btn btn-default"%></a>
+          </div>
+    </div>
 </div>
 <br>
 <%end%>

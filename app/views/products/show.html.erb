@@ -437,9 +437,9 @@
                   <%= link_to "Write a comment",  new_product_review_path(@product), class:"btn btn-primary"%>  
                 <% else %>
                   <% if !@reviews.pluck(:product_id).include?(@product.id) %>
-                  <%= link_to "Write a comment",  new_product_review_path(@product), class:"btn btn-default"%> 
+                  <%= link_to "Write a comment",  new_product_review_path(@product), class:"btn btn-primary"%> 
                   <% else %>
-                  <%= link_to "Edit a comment",  edit_product_review_path(@product), class:"btn btn-default"%> 
+                  <%= link_to "Edit a comment",  edit_product_review_path(@product), class:"btn btn-primary"%> 
                   <% end %>
                 <% end %>
               <% else %> 
