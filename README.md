@@ -4,7 +4,7 @@ I use it for my learning purpose
 17.10.2021  
 Added templates on the internet and some functions  
 Add validation and fix bugs
-Increase the number of products each time an existing product is added 
+Increase the number of products each time an existing product is added  
 **Installation**:  
 [Ruby on Rails freecodecamp course](https://www.youtube.com/watch?v=fmyvWz5TUWg&t=12753s)  
 [Gorails](https://gorails.com/setup/windows/10) WSL: Windows Subsystem for Linux  
