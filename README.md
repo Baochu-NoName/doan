@@ -5,7 +5,7 @@ I use it for my learning purpose
 Added templates on the internet and some functions  
 Add validation and fix bugs
 Increase the number of products each time an existing product is added  
-**Installation**:
+**Installation**:  
 [Git](https://git-scm.com/download) Git  
 [Rails Installer](https://railsinstaller.org/)  
 [Ruby Installer](https://rubyinstaller.org/)    
