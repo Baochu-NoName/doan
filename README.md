@@ -6,7 +6,7 @@ Added templates on the internet and some functions
 Add validation and fix bugs
 Increase the number of products each time an existing product is added  
 **Installation**:  
-[Git](https://git-scm.com/download) Git  
+[Git](https://git-scm.com/download)  
 [Rails Installer](https://railsinstaller.org/)  
 [Ruby Installer](https://rubyinstaller.org/)    
 [Ruby on Rails freecodecamp full course](https://www.youtube.com/watch?v=fmyvWz5TUWg&t=12753s)  
