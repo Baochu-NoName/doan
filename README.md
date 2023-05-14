@@ -15,8 +15,8 @@ Increase the number of products each time an existing product is added
 **Documentation guildines:**   
 [Ruby on Rails offcial website](https://guides.rubyonrails.org/getting_started.html)  
 **Dependencies**  
-[Active Admin](https://activeadmin.info/documentation.html) (For admin page)
-[Devise](https://github.com/heartcombo/devise) (For user authentication)
+[Active Admin](https://activeadmin.info/documentation.html) For admin page
+[Devise](https://github.com/heartcombo/devise) For user authentication
 **Version**  
 Ruby: ruby 3.0.2p107  
 Rails: Rails 6.1.4.1
