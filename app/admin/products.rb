@@ -6,7 +6,7 @@ ActiveAdmin.register Product do
 
   permit_params :image, :name, :description, :price, 
   :sold_quantity, :new_price, :available,
-  :per_page, :released_at,:rating, :created_at, :category_id, :brand_id
+  :per_page, :released_at,:rating, :created_at, :category_id, :brand_id, multiple_images: []
   
   index do
   selectable_column
@@ -79,6 +79,16 @@ show do
         row "Brand", :brand do |product|
           link_to "#{product.brand.name}", admin_brand_path
         end
+
+        row "Product Images" do
+          table do
+            product.multiple_images.each do |image|        
+              td do
+                image_tag image, size: '50x50'
+              end
+            end
+          end
+        end
     end
   end
 end
@@ -87,6 +97,7 @@ end
     f.inputs "Products Details" do
     f.input :name
     f.input :image, as: :file
+    f.input :multiple_images, as: :file, input_html: { multiple: true }
     f.input :description 
     f.input :price
     f.input :new_price

@@ -12,6 +12,7 @@ end
   root 'homepage#index'
   get 'blogs/list'
   get 'blogs/single'  
+  get 'blogs/contact'
   get 'carts', to:'carts#show'
   get 'invoices/new', to:'invoices#new'
   get 'invoices', to: 'invoices#index'

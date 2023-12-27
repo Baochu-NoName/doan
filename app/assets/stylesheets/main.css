@@ -907,6 +907,7 @@ h2.title {
     bottom: 0;
     text-align: center;
     width: 100%;
+    z-index: 99;
 }
 
 .product-overlay .add-to-cart {

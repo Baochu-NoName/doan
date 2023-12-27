@@ -4,4 +4,7 @@ class BlogsController < ApplicationController
 
   def single
   end
+
+  def contact
+  end
 end

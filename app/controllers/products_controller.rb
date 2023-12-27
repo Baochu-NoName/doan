@@ -1,8 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update]
+
   def index
     checkProduct(params[:cate], params[:brand])
+    @products_json = Product.all.order(name: :desc)
   end
+
   def show
     checkProduct(params[:cate], params[:brand])
     @order_item = current_order.order_items.new
@@ -15,14 +18,11 @@ class ProductsController < ApplicationController
     @invoices = current_user.invoices.all if current_user
   end
 
-
-
   def new
     @product = Product.find(params[:id])
   end
 
   private 
-  
   def checkProduct(category = params[:cate], brand = params[:brand])     
     @categories = Category.all
     @brands = Brand.all
@@ -39,6 +39,6 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
   def product_params
-    params.require(:product).permit(:name, :image, :description,:price,:new_price,:released_at,:sold_quantity,:rating, :order_items)
+    params.require(:product).permit(:name, :image, :description, :price, :new_price, :released_at, :sold_quantity, :rating, :order_items, multiple_images: [])
   end
 end

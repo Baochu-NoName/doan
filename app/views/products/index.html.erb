@@ -14,7 +14,7 @@
               <% @categories.each do |cat| %>
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h4 class="panel-title"><a href=""><%= link_to cat.name, products_path(cate: cat.id) %></a><span class="badge bg-primary"> <%= cat.products.count %></span></h4>
+                  <h4 class="panel-title"><a href=""><%= link_to cat.name, products_path(cate: cat.id) %></a> <span class="badge bg-danger"> <%= cat.products.count %></span></h4>
                   
                 </div>
               </div>

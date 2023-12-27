@@ -26,3 +26,12 @@ src:url("/assets/fontawesome-webfont.eot") format("embedded-opentype"),
 font-weight:normal;
 font-style:normal;
 }
+.img-thumbnail{
+    height: 200px!important;
+}
+.badge{
+    color: #fff!important;
+}
+.nav-justified {
+    display: inline-block;
+}
