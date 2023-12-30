@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 2023_12_26_071117) do
   end
 
   create_table "reviews", force: :cascade do |t|
+    t.string "user_name"
     t.string "user_email"
     t.decimal "rating", precision: 2, scale: 1
     t.text "comment"

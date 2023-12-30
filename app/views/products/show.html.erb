@@ -48,36 +48,29 @@
             <div class="col-sm-5">
               <div class="view-product">
                 <%= image_tag @product.image%>
-                <h3>ZOOM</h3>
+                <h3 id="zoom" data-bs-toggle="modal" data-bs-target="#exampleModal">ZOOM</h3>
               </div>
-              <div id="similar-product" class="carousel slide" data-ride="carousel">
+              <div id="similar-product" class="carousel slide" data-bs-ride="carousel">
                 
                   <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                    <div class="item active">
-                      <%= image_tag('product-details/similar1',alt:'picture gallery')%>
-                      <%= image_tag('product-details/similar2',alt:"picture gallery 2") %>
-                      <%= image_tag('product-details/similar3', alt:"picture gallery 3")%>
-                    </div>
-                    <div class="item">
-                      <%= image_tag('product-details/similar1', alt:"picture gallery 1")%>
-                      <%= image_tag('product-details/similar2', alt:"picture gallery 2")%>
-                      <%= image_tag('product-details/similar3', alt:"picture gallery 3")%>
-                    </div>
-                    <div class="item">
-                      <%= image_tag('product-details/similar1', alt:"picture gallery 1")%>
-                        <%= image_tag('product-details/similar2', alt:"picture gallery 2")%>
-                      <%= image_tag('product-details/similar3', alt:"picture gallery 3")%>
-                    </div>
-                    
+                  <div class="carousel-inner">
+                    <% @product.multiple_images.each_with_index do |image, index| %>
+                      <% if (index+3) % 3 == 0 %>
+                        <div class="carousel-item <%= "active" if index == 0 %>">
+                      <% end %>
+                          <%= link_to image_tag(image, alt:'picture gallery', size: '80x80'), rails_blob_url(image) %>
+                      <% if (index+1) % 3 == 0 || index == (@product.multiple_images.count - 1) %>
+                        </div>
+                      <% end %>
+                    <% end %>
                   </div>
 
                   <!-- Controls -->
-                  <a class="left item-control" href="#similar-product" data-slide="prev">
-                  <i class="fa fa-angle-left"></i>
+                  <a class="carousel-control-prev left item-control" data-bs-slide="prev" data-bs-target="#similar-product">
+                    <i class="fa fa-angle-left"></i>
                   </a>
-                  <a class="right item-control" href="#similar-product" data-slide="next">
-                  <i class="fa fa-angle-right"></i>
+                  <a class="carousel-control-next right item-control" data-bs-slide="next" data-bs-target="#similar-product">
+                    <i class="fa fa-angle-right"></i>
                   </a>
               </div>
 
@@ -306,10 +299,10 @@
                     <% else %>
                       <%= render_stars(@product.rating) %>
                       <%= @product.rating %>
-                    <%end%>
+                    <% end %>
                     <button type="button" class="btn btn-default pull-right">
                       Submit
-                    </button>
+                    </button> 
                   </form>
                 </div>
               </div>
@@ -320,9 +313,9 @@
           <div class="recommended_items"><!--recommended_items-->
             <h2 class="title text-center">recommended items</h2>
             
-            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+            <div id="recommended-item-carousel" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-inner">
-                <div class="item active"> 
+                <div class="carousel-item active"> 
                   <div class="col-sm-4">
                     <div class="product-image-wrapper">
                       <div class="single-products">
@@ -363,7 +356,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="item">  
+                <div class="carousel-item">  
                   <div class="col-sm-4">
                     <div class="product-image-wrapper">
                       <div class="single-products">
@@ -403,10 +396,10 @@
                   </div>
                 </div>
               </div>
-               <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+               <a class="carousel-control-prev left recommended-item-control" data-bs-slide="prev" data-bs-target="#recommended-item-carousel">
                 <i class="fa fa-angle-left"></i>
                 </a>
-                <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                <a class="carousel-control-next right recommended-item-control" data-bs-slide="next" data-bs-target="#recommended-item-carousel">
                 <i class="fa fa-angle-right"></i>
                 </a>      
             </div>
@@ -423,7 +416,7 @@
         <% else %>
           <% @reviews.each do |review|%>
             <p><%= review.user_email %></p>
-            <div class= "star-rating" data-score = <%= review.rating %> ></div>
+            <div class="star-rating" data-score = <%= review.rating %> ></div>
             <p><%= review.comment %></p>       
         <% end %> 
         <% end %>
@@ -453,6 +446,28 @@
     </div>
 </section>
 
+<!-- Modal -->
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">All Images</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="image-modal">
+          <%= link_to image_tag(@product.image, size: '100x100', class: "image-zoom"), rails_blob_url(@product.image) %>
+          <% @product.multiple_images.each do |image| %>
+            <%= link_to image_tag(image, size: '100x100', class: 'image-zoom'), rails_blob_url(image) %>
+          <% end %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
     $(".star-rating").raty({
       path: '/assets/',

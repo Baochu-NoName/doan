@@ -1184,11 +1184,11 @@ h2.title {
     right: 0;
 }
 
-#similar-product .carousel-inner .item {
+#similar-product .carousel-inner .carousel-item {
     padding-left: 0px;
 }
 
-#similar-product .carousel-inner .item img {
+#similar-product .carousel-inner .carousel-item img {
     display: inline-block;
     margin-left: 15px;
 }

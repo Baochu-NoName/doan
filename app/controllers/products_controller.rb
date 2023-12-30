@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
       @avg_review = @reviews.average(:rating).round(2) unless @reviews.average(:rating).nil?
     end
     @invoices = current_user.invoices.all if current_user
+    @review = Review.new
   end
 
   def new

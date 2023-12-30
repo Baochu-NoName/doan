@@ -1,38 +1,43 @@
-<%= form_for([@product, @review]) do |f| %>
-<% if @review.errors.any? %>
+<%= form_for([product, review]) do |f| %>
+<% if review.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this invoice from being saved:</h2>
 
       <ul>
-        <% @review.errors.each do |error| %>
+        <% review.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 <% if user_signed_in?%>
- <div class="field">
-<%= f.label :user_email%>
-<%= f.email_field :user_email, value: current_user.email, class:"form-control"%>
-</div>
-<br> 
-<div id="star-rating"></div><hr>
-<div class="field">
-<%= f.label :comment%>
-<%= f.text_area :comment, class:"form-control"%>
-</div>
-<br>
+  <div class="field">
+    <%= f.label :user_name %>
+    <%= f.text_field :user_name, value: current_user.name, class:"form-control"%>
+  </div>
+  
+  <div class="field">
+    <%= f.label :user_email %>
+    <%= f.email_field :user_email, value: current_user.email, class:"form-control"%>
+  </div>
+  <br> 
+  <div id="star-rating"></div><hr>
+  <div class="field">
+    <%= f.label :comment%>
+    <%= f.text_area :comment, class:"form-control"%>
+  </div>
+  <br>
 
 <div class="row">
     <div class="col-sm-12">
           <div class="total_area">
-              <a href=""><%= f.submit :Submit, class:"btn btn-success"%></a>
-              <a href=""><%= link_to "Back", product_path(@product), class:"btn btn-default"%></a>
+              <%= f.submit :Submit, class:"btn btn-success"%>
+              <%= link_to "Back", product_path(product), class:"btn btn-default"%>
           </div>
     </div>
 </div>
 <br>
-<%end%>
+<%end %>
 <%end%>
 <script>
   $('#star-rating').raty({
